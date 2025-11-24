@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniVerse | 8-Bit Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="crt-overlay"></div>
+    <div class="retro-grid"></div>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">UNI<span class="highlight">VERSE</span>_</div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="nav-item active" data-target="home">[ HOME ]</a></li>
+                <li><a href="#" class="nav-item" data-target="events">[ EVENTS ]</a></li>
+                <li><a href="#" class="nav-item" data-target="gallery">[ GALLERY ]</a></li>
+                <li id="dashboardLink" class="hidden"><a href="#" class="nav-item" data-target="dashboard">[ DASHBOARD ]</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="themeToggle" class="btn-icon" title="Toggle Terminal Mode">
+                    <i class="fas fa-tv"></i>
+                </button>
+
+                <div class="auth-buttons" id="authButtons">
+                    <button class="btn btn-outline" id="loginBtn">LOGIN</button>
+                    <button class="btn btn-primary" id="registerBtn">INSERT COIN</button>
+                </div>
+
+                <div class="user-menu hidden" id="userMenu">
+                    <span id="welcomeMsg">PLAYER 1</span>
+                    <button class="btn btn-sm btn-danger" id="logoutBtn"><i class="fas fa-power-off"></i></button>
+                </div>
+
+                <div class="burger" id="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="mainContent">
+
+        <section id="home" class="page-section active">
+            <div class="container hero-container">
+                <div class="retro-panel hero-content">
+                    <h1 class="glitch" data-text="LEVEL UP YOUR CAMPUS LIFE">LEVEL UP YOUR <br> CAMPUS LIFE</h1>
+                    <p>> initializing_social_hub...<br>> status: online</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-lg btn-primary" onclick="navigateTo('events')">BROWSE EVENTS</button>
+                        <button class="btn btn-lg btn-outline" onclick="navigateTo('gallery')">VIEW ARCHIVES</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="page-section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>>> UPCOMING_EVENTS</h2>
+                    <p>Select your mission below.</p>
+                </div>
+                <div id="eventsLoader" class="loader hidden">LOADING...</div>
+                <div class="grid-layout" id="eventsContainer">
+                    </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="page-section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>>> MEMORY_BANKS</h2>
+                    <p>Accessing past mission data.</p>
+                </div>
+                <div id="galleryLoader" class="loader hidden">LOADING...</div>
+                <div class="grid-layout" id="galleryContainer">
+                    </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="page-section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>>> COMMAND_CENTER</h2>
+                    <p>Administer your guild activities.</p>
+                </div>
+                
+                <div class="grid-layout">
+                    <div class="retro-panel dashboard-card" id="clubRequestFormCard">
+                        <h3><i class="fas fa-users"></i> REQ_NEW_GUILD</h3>
+                        <form id="clubRequestForm">
+                            <div class="form-group">
+                                <label>GUILD_NAME</label>
+                                <input type="text" name="clubName" class="retro-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>DESCRIPTION</label>
+                                <textarea name="description" class="retro-input" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>CLASS</label>
+                                <input type="text" name="category" class="retro-input" placeholder="e.g. TECH, ART" required>
+                            </div>
+                            <div class="form-group">
+                                <label>MENTOR_ID</label>
+                                <input type="text" name="proposedMentorName" class="retro-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>PARTY_MEMBERS (REG NO)</label>
+                                <input type="text" name="memberRegistrationNos" class="retro-input" placeholder="REG01, REG02..." required>
+                                <small>MIN 5 PLAYERS REQUIRED</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">SEND REQUEST</button>
+                        </form>
+                    </div>
+
+                    <div class="retro-panel dashboard-card hidden" id="createEventCard">
+                        <h3><i class="fas fa-plus-circle"></i> SPAWN_EVENT</h3>
+                        <form id="createEventForm">
+                            <div class="form-group">
+                                <label>QUEST_TITLE</label>
+                                <input type="text" name="title" class="retro-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>BRIEFING</label>
+                                <textarea name="description" class="retro-input" required></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>DATE</label>
+                                    <input type="date" name="eventDate" class="retro-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>DIFFICULTY</label>
+                                    <select name="eventType" class="retro-input">
+                                        <option value="MINOR">SIDE QUEST (MINOR)</option>
+                                        <option value="MAJOR">BOSS RAID (MAJOR)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>START_T</label>
+                                    <input type="time" name="startTime" class="retro-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>END_T</label>
+                                    <input type="time" name="endTime" class="retro-input" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>GUILD_ID</label>
+                                    <input type="number" name="clubId" class="retro-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>ZONE_ID</label>
+                                    <input type="number" name="venueId" class="retro-input" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">PUBLISH</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay hidden" id="authModal">
+        <div class="retro-panel modal-content">
+            <button class="close-modal" id="closeModal">X</button>
+            
+            <div id="loginFormContainer">
+                <h2>>> AUTHENTICATE</h2>
+                <p>Enter credentials to continue</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>EMAIL</label>
+                        <input type="email" name="email" class="retro-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PASSWORD</label>
+                        <input type="password" name="password" class="retro-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">START</button>
+                </form>
+                <p class="switch-auth">NO SAVE DATA? <a href="#" id="showRegister">NEW GAME</a></p>
+            </div>
+
+            <div id="registerFormContainer" class="hidden">
+                <h2>>> NEW_CHARACTER</h2>
+                <p>Join the server</p>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>PLAYER NAME</label>
+                        <input type="text" name="name" class="retro-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>REGISTRATION CODE</label>
+                        <input type="text" name="registrationNo" class="retro-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>EMAIL</label>
+                        <input type="email" name="email" class="retro-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PASSWORD</label>
+                        <input type="password" name="password" class="retro-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">CREATE</button>
+                </form>
+                <p class="switch-auth">ALREADY A PLAYER? <a href="#" id="showLogin">LOAD GAME</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="retro-toast hidden">
+        <span class="toast-icon">!</span>
+        <span class="toast-msg">ACTION SUCCESSFUL</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

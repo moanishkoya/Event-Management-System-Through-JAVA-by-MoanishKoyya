@@ -1,0 +1,17 @@
+com\college\eventportal\controller\ClubController$ClubRequestDto.class
+com\college\eventportal\repository\EventRepository.class
+com\college\eventportal\controller\ClubController.class
+com\college\eventportal\entity\ClubRequest.class
+com\college\eventportal\repository\UserRepository.class
+com\college\eventportal\controller\EventController.class
+com\college\eventportal\repository\EventApplicationRepository.class
+com\college\eventportal\controller\AdminController.class
+com\college\eventportal\entity\Event.class
+com\college\eventportal\config\DataInitializer.class
+com\college\eventportal\config\SecurityConfig.class
+com\college\eventportal\controller\EventController$SimpleEvent.class
+com\college\eventportal\entity\EventApplication.class
+com\college\eventportal\repository\ClubRequestRepository.class
+com\college\eventportal\EventPortalApplication.class
+com\college\eventportal\entity\User.class
+com\college\eventportal\controller\AuthController.class
